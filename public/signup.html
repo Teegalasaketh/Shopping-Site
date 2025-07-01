@@ -71,27 +71,30 @@
   </div>
 
   <script>
-  const signupForm = document.getElementById("signupForm");
-  signupForm.onsubmit = function (e) {
-    e.preventDefault();
-    const name = document.getElementById("signupName").value;
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
+    document.addEventListener("DOMContentLoaded", function () {
+      const signupForm = document.getElementById("signupForm");
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+      signupForm.onsubmit = function (e) {
+        e.preventDefault();
+        const name = document.getElementById("signupName").value;
+        const email = document.getElementById("signupEmail").value;
+        const password = document.getElementById("signupPassword").value;
 
-    if (users.some(user => user.email === email)) {
-      showCartMessage("This email is already registered.");
-      return;
-    }
+        let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    users.push({ name, email, password });
-    localStorage.setItem("users", JSON.stringify(users));
+        if (users.some(user => user.email === email)) {
+          showCartMessage("This email is already registered.");
+          return;
+        }
 
-    showCartMessage("Signup successful! You can now login.");
-    window.location.href = "login.html";
-  };
-</script>
+        users.push({ name, email, password });
+        localStorage.setItem("users", JSON.stringify(users));
+
+        showCartMessage("Signup successful! You can now login.");
+        window.location.href = "login.html";
+      };
+    });
+  </script>
 
   <script src="javascript.js"></script>
 </body>
