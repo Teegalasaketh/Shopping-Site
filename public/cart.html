@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoping Web Page</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="../public/style.css">
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="../public/images/logo.png" alt="logo" width="200px" height="40px"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="../public/index.html">Home</a></li>
+                <li><a href="../public/shop.html">Shop</a></li>
+                <li><a href="../public/blog.html">Blog</a></li>
+                <li><a href="../public/about.html">About</a></li>
+                <li><a href="../public/contact.html">Contact</a></li>
+                <li><a class="active" href="../public/cart.html"><i id="lg-bag" class="far fa-shopping-bag"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="#"><i class="far fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+    <section id="page-header" class="about-header" style="background-image: url('../public/images/cart.png');">
+        <h2>#Cart</h2>
+        <p>Cart your favorites, checkout with ease!</p>
+    </section>
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+                <tbody id="cart-items">
+                </tbody>
+        </table>
+    </section>
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your coupon">
+                <button class="normal" onclick="showCartMessage('Feature Is Not Implemented!')">Apply</button>
+            </div>
+        </div>
+        <div id="subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>
+                    Cart Subtotals
+                </td>
+                <td>
+                    $ 335.00
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                        Shipping
+                    </td>
+                    <td>
+                        Free
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>$ 335.00</strong></td>
+                </tr>
+            </table>
+            <button class="normal" onclick="showCartMessage('Feature Is Not Implemented!')">Proceed to checkout</button>
+        </div>
+    </section>
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="../public/images/logo.png" alt=""  width="350px" height="120px">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong>562 Wellington Road, Street 32, San Francisco</p>
+            <p><strong>Phone: </strong>+01 3333 845 / (+91) 01 5878 9542</p>
+            <p><strong>Hours: </strong>10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="../public/images/app.jpg" alt="">
+                <img src="../public/images/play.jpg" alt="">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="../public/images/pay.png" alt="">
+        </div>
+        <div class="copyright">
+            <p>&copy;2025. All Rights Secured</p>
+        </div>
+    </footer>
+    <script src="../src/javascript.js"></script>
+</body>
+</html>  
+
+<script src="../public/javascript.js"></script>
+<script>
+    let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const tbody = document.getElementById("cart-items");
+    tbody.innerHTML = "";
+
+    let total = 0;
+
+    cartItems.forEach((item, i) => {
+        const itemTotal = parseFloat(item.price.replace("$", "")) * item.qty;
+        total += itemTotal;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td><button onclick="removeItem(${i})" class="qty-btn"><i class="far fa-times-circle"></i></button></td>
+            <td><img src="${item.img}" width="50"></td>
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td>
+                <button onclick="changeQty(${i}, -1)" class="qty-btn">-</button>
+                ${item.qty}
+                <button onclick="changeQty(${i}, 1)" class="qty-btn">+</button>
+            </td>
+            <td>$${itemTotal.toFixed(2)}</td>
+        `;
+        tbody.appendChild(row);
+    });
+
+    document.querySelector("#subtotal table").innerHTML = `
+        <tr><td>Cart Subtotals</td><td>$${total.toFixed(2)}</td></tr>
+        <tr><td>Shipping</td><td>Free</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>$${total.toFixed(2)}</strong></td></tr>
+    `;
+
+    function removeItem(index) {
+        cartItems.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+        location.reload();
+    }
+
+    function changeQty(index, change) {
+        if (cartItems[index].qty + change >= 1) {
+            cartItems[index].qty += change;
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            location.reload();
+        }
+    }
+</script>

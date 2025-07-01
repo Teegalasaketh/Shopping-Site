@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Info</title>
+</head>
+<body>
+    <div id="all-users"></div>
+</body>
+<script>
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  let output = "<h3>All Registered Users:</h3><ul>";
+  users.forEach((u, i) => {
+    output += `<li><strong>Name:</strong> ${u.name}</li>
+      <li><strong>Email:</strong> ${u.email}</li> 
+      <li><strong>Pass:</strong> ${u.password}</li>
+      <hr>`;
+  });
+  output += "</ul>";
+
+  document.getElementById("all-users").innerHTML = output;
+</script>
+</html>
