@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoping Web Page</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section id="header">
-        <a href="#"><img src="../public/images/logo.png" alt="logo" width="200px" height="40px"></a>
+        <a href="#"><img src="images/logo.png" alt="logo" width="200px" height="40px"></a>
         <div>
             <ul id="navbar">
-                <li><a href="../public/index.html">Home</a></li>
-                <li><a href="../public/shop.html">Shop</a></li>
-                <li><a href="../public/blog.html">Blog</a></li>
-                <li><a href="../public/about.html">About</a></li>
-                <li><a href="../public/contact.html">Contact</a></li>
-                <li><a class="active" href="../public/cart.html"><i id="lg-bag" class="far fa-shopping-bag"></i></a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="active" href="cart.html"><i id="lg-bag" class="far fa-shopping-bag"></i></a></li>
                 <a href="#" id="close"><i class="far fa-times"></i></a>
             </ul>
         </div>
@@ -26,7 +26,7 @@
             <i id="bar" class="fas fa-outdent"></i>
         </div>
     </section>
-    <section id="page-header" class="about-header" style="background-image: url('../public/images/cart.png');">
+    <section id="page-header" class="about-header" style="background-image: url('images/cart.png');">
         <h2>#Cart</h2>
         <p>Cart your favorites, checkout with ease!</p>
     </section>
@@ -83,7 +83,7 @@
     </section>
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="../public/images/logo.png" alt=""  width="350px" height="120px">
+            <img class="logo" src="images/logo.png" alt=""  width="350px" height="120px">
             <h4>Contact</h4>
             <p><strong>Address: </strong>562 Wellington Road, Street 32, San Francisco</p>
             <p><strong>Phone: </strong>+01 3333 845 / (+91) 01 5878 9542</p>
@@ -119,21 +119,20 @@
             <h4>Install App</h4>
             <p>From App Store or Google Play</p>
             <div class="row">
-                <img src="../public/images/app.jpg" alt="">
-                <img src="../public/images/play.jpg" alt="">
+                <img src="images/app.jpg" alt="">
+                <img src="images/play.jpg" alt="">
             </div>
             <p>Secured Payment Gateways</p>
-            <img src="../public/images/pay.png" alt="">
+            <img src="images/pay.png" alt="">
         </div>
         <div class="copyright">
             <p>&copy;2025. All Rights Secured</p>
         </div>
     </footer>
-    <script src="../src/javascript.js"></script>
 </body>
 </html>  
 
-<script src="../public/javascript.js"></script>
+<script src="javascript.js"></script>
 <script>
     let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const tbody = document.getElementById("cart-items");
@@ -180,4 +179,32 @@
             location.reload();
         }
     }
+</script>
+<script>
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+  const navbar = document.getElementById("navbar");
+
+  if (loggedIn && user) {
+  const initials = user.name.split(" ")[0].charAt(0).toUpperCase() +
+                   (user.name.split(" ")[1]?.charAt(0).toUpperCase() || "");
+  navbar.innerHTML += `
+    <li class="profile-circle">${initials}</li>
+    <li><button class="normal" id="log-btn" onclick="logout()">Logout</button></li>
+  `;
+} else {
+  navbar.innerHTML += `
+    <li><button class="normal" id="log-btn"onclick="page()">Login</button></li>
+  `;
+}
+
+function page(){
+    window.location.href = "login.html";
+}
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("loggedInUser");
+    location.reload();
+  }
 </script>

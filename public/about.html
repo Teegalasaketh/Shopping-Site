@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoping Web Page</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section id="header">
-        <a href="#"><img src="../public/images/logo.png" alt="logo" width="200px" height="40px"></a>
+        <a href="#"><img src="images/logo.png" alt="logo" width="200px" height="40px"></a>
         <div>
             <ul id="navbar">
-                <li><a  href="../public/index.html">Home</a></li>
-                <li><a  href="../public/shop.html">Shop</a></li>
-                <li><a  href="../public/blog.html">Blog</a></li>
-                <li><a class="active" href="../public/about.html">About</a></li>
-                <li><a href="../public/contact.html">Contact</a></li>
-                <li><a href="../public/cart.html"><i id="lg-bag" class="far fa-shopping-bag"></i></a></li>
+                <li><a  href="index.html">Home</a></li>
+                <li><a  href="shop.html">Shop</a></li>
+                <li><a  href="blog.html">Blog</a></li>
+                <li><a class="active" href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i id="lg-bag" class="far fa-shopping-bag"></i></a></li>
                 <a href="#" id="close"><i class="far fa-times"></i></a>
             </ul>
         </div>
@@ -26,12 +26,12 @@
             <i id="bar" class="fas fa-outdent"></i>
         </div>
     </section>
-    <section id="page-header" class="about-header" style="background-image: url('../public/images/Abanner.png');">
+    <section id="page-header" class="about-header" style="background-image: url('images/Abanner.png');">
         <h2>#KnowUs</h2>
         <p>More About this Fashion Store!</p>
     </section>
     <section id="about-head" class="section-p1" >
-        <img src="../public/images/a6.jpg" alt="">
+        <img src="images/a6.jpg" alt="">
         <div>
             <h2>Who we Are?</h2>
             <p>We are a passionate team dedicated to bringing you the latest trends in fashion. Our mission is to provide high-quality products and exceptional customer service, making your shopping experience enjoyable and memorable. With a keen eye for style and a commitment to excellence, we carefully curate our collections to suit every taste. Whether you're looking for everyday essentials or standout pieces, we strive to be your go-to destination for all things fashion.</p>
@@ -45,32 +45,32 @@
     <section id="about-app" class="section-p1">
         <h1>Visite Our Site <a href="#">Here</a></h1>
         <div class="video">
-            <video autoplay muted loop src="../public/images/1.mp4"></video>
+            <video autoplay muted loop src="images/1.mp4"></video>
         </div>
     </section>
         <section id="feature" class="section-p1">
         <div class="fe-box">
-            <img src="../public/images/f1.png" alt="">
+            <img src="images/f1.png" alt="">
             <h6>Free Shipping</h6>
         </div>
         <div class="fe-box">
-            <img src="../public/images/f2.png" alt="">
+            <img src="images/f2.png" alt="">
             <h6>Online Order</h6>
         </div>
         <div class="fe-box">
-            <img src="../public/images/f3.png" alt="">
+            <img src="images/f3.png" alt="">
             <h6>Save Money</h6>
         </div>
         <div class="fe-box">
-            <img src="../public/images/f4.png" alt="">
+            <img src="images/f4.png" alt="">
             <h6>Promotions</h6>
         </div>
         <div class="fe-box">
-            <img src="../public/images/f5.png" alt="">
+            <img src="images/f5.png" alt="">
             <h6>Happy Sell</h6>
         </div>
         <div class="fe-box">
-            <img src="../public/images/f6.png" alt="">
+            <img src="images/f6.png" alt="">
             <h6>Support</h6>
         </div>
     </section>
@@ -87,7 +87,7 @@
     </section>
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="../public/images/logo.png" alt=""  width="350px" height="120px">
+            <img class="logo" src="images/logo.png" alt=""  width="350px" height="120px">
             <h4>Contact</h4>
             <p><strong>Address: </strong>562 Wellington Road, Street 32, San Francisco</p>
             <p><strong>Phone: </strong>+01 3333 845 / (+91) 01 5878 9542</p>
@@ -123,16 +123,44 @@
             <h4>Install App</h4>
             <p>From App Store or Google Play</p>
             <div class="row">
-                <img src="../public/images/app.jpg" alt="">
-                <img src="../public/images/play.jpg" alt="">
+                <img src="images/app.jpg" alt="">
+                <img src="images/play.jpg" alt="">
             </div>
             <p>Secured Payment Gateways</p>
-            <img src="../public/images/pay.png" alt="">
+            <img src="images/pay.png" alt="">
         </div>
         <div class="copyright">
             <p>&copy;2025. All Rights Secured</p>
         </div>
     </footer>
-    <script src="../public/javascript.js"></script>
+    <script src="javascript.js"></script>
 </body>
 </html>  
+<script>
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+  const navbar = document.getElementById("navbar");
+
+  if (loggedIn && user) {
+  const initials = user.name.split(" ")[0].charAt(0).toUpperCase() +
+                   (user.name.split(" ")[1]?.charAt(0).toUpperCase() || "");
+  navbar.innerHTML += `
+    <li class="profile-circle">${initials}</li>
+    <li><button class="normal" id="log-btn" onclick="logout()">Logout</button></li>
+  `;
+} else {
+  navbar.innerHTML += `
+    <li><button class="normal" id="log-btn"onclick="page()">Login</button></li>
+  `;
+}
+
+function page(){
+    window.location.href = "login.html";
+}
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("loggedInUser");
+    location.reload();
+  }
+</script>
