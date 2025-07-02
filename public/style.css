@@ -1031,6 +1031,11 @@ footer .copyright{
         width: 100%;
         margin-right: 0px;
     }
+    #prodetails .spro-img img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
     #prodetails .spro-details{
         width: 100%;
     }
