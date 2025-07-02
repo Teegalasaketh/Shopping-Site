@@ -1036,6 +1036,10 @@ footer .copyright{
         height: auto;
         object-fit: cover;
     }
+    #prodetails .spro-img {
+        padding: 10px 0;
+    }
+
     #prodetails .spro-details{
         width: 100%;
     }
