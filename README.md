@@ -1,8 +1,8 @@
 # 🛍️ Shopping Site
 
-A fully responsive and dynamic shopping website built with **Node.js**, **Express**, **HTML**, **CSS**, and **JavaScript**.  
+A fully responsive and dynamic shopping website built with **HTML**, **CSS**, and **JavaScript**.  
 This project simulates an e-commerce experience, allowing users to browse products, view details, add items to the cart, and explore blog or contact pages.
-
+🌐 **Live Demo:** [https://shopping-site-jtlg.onrender.com](https://shopping-site-jtlg.onrender.com)
 ---
 
 ## 🚀 Features
@@ -22,9 +22,9 @@ This project simulates an e-commerce experience, allowing users to browse produc
 | Category | Technology |
 |-----------|-------------|
 | Frontend | HTML, CSS, JavaScript |
-| Backend | Node.js, Express |
+| Backend | Node.js|
 | Package Manager | npm |
-| Server | Express.js |
+| Hosting | Render |
 | Version Control | Git & GitHub |
 
 
