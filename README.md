@@ -27,7 +27,4 @@ This project simulates an e-commerce experience, allowing users to browse produc
 | Server | Express.js |
 | Version Control | Git & GitHub |
 
----
-
-## 📂 Project Structure
 
